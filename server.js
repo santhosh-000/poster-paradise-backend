@@ -527,6 +527,9 @@ app.delete('/api/feedbacks/:id', requireAdminAuth, async (req, res) => {
     res.json({ message: "Feedback deleted successfully!" });
 });
 
+app.get('/', (req, res) => {
+  res.send('Poster Paradise Backend is running successfully!');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, async () => {

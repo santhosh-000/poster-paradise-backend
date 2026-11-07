@@ -531,6 +531,14 @@ app.get('/', (req, res) => {
   res.send('Poster Paradise Backend is running successfully!');
 });
 
+app.post('/admin/login', async (req, res) => {
+  // login logic here
+});
+
+app.post('/admin/register', async (req, res) => {
+  // register logic here
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, async () => {
     console.log(`Poster Paradise Backend running on port ${PORT}`);

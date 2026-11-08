@@ -28,9 +28,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false, // true if using HTTPS in production
+        secure: true, // Cross-origin HTTPS-ku true irukanum
         httpOnly: true,
-        sameSite: 'lax', // Added to ensure cookie persists properly after login redirection
+        sameSite: 'none', // Cross-domain cookies block aagama irukka 'none' thevai
         maxAge: 24 * 60 * 60 * 1000 // 1 Day session validity
     }
 }));

@@ -7,6 +7,8 @@ require('dotenv').config();
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
+app.set('trust proxy', 1); // Trust Render's proxy load balancer
+
 app.use(cors({
     origin: true,
     credentials: true
@@ -27,6 +29,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'poster_paradise_secure_secret_key_2026',
     resave: false,
     saveUninitialized: false,
+    proxy: true, // Required for secure cookies behind Render's proxy
     cookie: {
         secure: true, // Cross-origin HTTPS-ku true irukanum
         httpOnly: true,
@@ -126,7 +129,7 @@ app.post('/api/admin/login', async (req, res) => {
 
         req.session.isAdminLoggedIn = true;
         req.session.adminUser = admin.username;
-        res.json({ message: 'Login successful!' });
+        res.json({ message: 'Login successful!', user: admin.username });
     } catch (err) {
         console.error("Login error:", err);
         res.status(500).json({ error: 'Server error during login' });
